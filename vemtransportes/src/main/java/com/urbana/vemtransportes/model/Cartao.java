@@ -1,6 +1,7 @@
 package com.urbana.vemtransportes.model;
 
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,24 +17,22 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Cartao {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // Torna o atribulo id em uma primery key dentro do banco de												// dados;
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // Torna o atribulo id em uma primery key dentro do banco de //
+														// dados;
 	private Long id;
-	
+
 	@NotNull // Este campo não poderá estar vazio;
 	private Long numeroCartao;
-	
+
 	@NotNull
 	@Size(min = 5, max = 100) // Define o tamanho minímo e máximo do atributo nome;
-	private String nome;
+	private String nome;//AQUI TALVEZ SEJA TIPO DE CARTAO
 
 	private boolean status = true;
-	
-	@NotNull
-	private String tipoCartao;
 
-//	@ManyToOne
-//	@JsonIgnoreProperties("cartao")
-//	private Usuario usuario;
+	@ManyToOne
+	@JsonIgnoreProperties("cartao")
+	private Usuario usuario;
 
 	public Cartao() {
 
@@ -71,14 +70,12 @@ public class Cartao {
 		this.status = status;
 	}
 
-	public String getTipoCartao() {
-		return tipoCartao;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setTipoCartao(String tipoCartao) {
-		this.tipoCartao = tipoCartao;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
-
-
 
 }
